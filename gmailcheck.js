@@ -15,6 +15,8 @@ const oauth2Client = new google.auth.OAuth2(
     credentials.web.redirect_uris[0]
 );
 
+var repliedOnce=[]
+
 // Set the scope for the Gmail API
 const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send', 'https://www.googleapis.com/auth/gmail.settings.basic', 'https://www.googleapis.com/auth/gmail.labels', 'https://www.googleapis.com/auth/gmail.modify'];
 
@@ -85,7 +87,7 @@ async function processEmails() {
                 );
 
 
-                if (!hasPriorReplies) {
+                if (!hasPriorReplies && !repliedOnce.includes(messageId)) {
 
                     const hasAttentionLabel = emailDetails.data.labelIds.includes('attentionrequired');
                     if (!hasAttentionLabel) {
@@ -102,6 +104,7 @@ async function processEmails() {
                                     raw: raw, // Provide the actual content
                                 },
                             });
+                            repliedOnce.push(messageId)
                         }
 
 

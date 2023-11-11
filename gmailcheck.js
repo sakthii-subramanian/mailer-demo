@@ -15,6 +15,7 @@ const oauth2Client = new google.auth.OAuth2(
     credentials.web.redirect_uris[0]
 );
 
+// To Keep track of messages that has already been replied and added to label
 var repliedOnce=[]
 
 // Set the scope for the Gmail API
@@ -104,6 +105,7 @@ async function processEmails() {
                                     raw: raw, // Provide the actual content
                                 },
                             });
+                            // Push messageid to array
                             repliedOnce.push(messageId)
                         }
 

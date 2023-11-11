@@ -1,7 +1,6 @@
 // app.js
 
 const { google } = require('googleapis');
-const nodemailer = require('nodemailer');
 const readline = require('readline-promise');
 const schedule = require('node-schedule');
 
@@ -16,7 +15,7 @@ const oauth2Client = new google.auth.OAuth2(
 );
 
 // To Keep track of messages that has already been replied and added to label
-var repliedOnce=[]
+var repliedOnce = []
 
 // Set the scope for the Gmail API
 const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send', 'https://www.googleapis.com/auth/gmail.settings.basic', 'https://www.googleapis.com/auth/gmail.labels', 'https://www.googleapis.com/auth/gmail.modify'];
